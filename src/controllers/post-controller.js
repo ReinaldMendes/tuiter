@@ -32,10 +32,9 @@ export const show = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const content = await OddEvenBet.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    ).exec();
+    const content = await OddEvenBet.findByIdAndUpdate({
+      user: req.user._id,
+    }).exec();
     res.json(content);
   } catch (error) {
     res.status(400).json(error);
@@ -43,7 +42,7 @@ export const update = async (req, res) => {
 };
 export const destroy = async (req, resp) => {
   try {
-    await Caneta.findByIdAndDelete(req.params.id).exec();
+    await Caneta.findByIdAndDelete({ user: req.user._id }).exec();
     resp.json();
   } catch (error) {
     resp.json(error);
