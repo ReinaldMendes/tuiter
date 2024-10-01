@@ -1,20 +1,18 @@
 import { Schema, model } from "mongoose";
 import User from "./user-models.js";
-const postSchema = new Schema({
-  text: {
-    type: String,
-    required: true,
+const postSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: false,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  //   rentedBy: {
-  //     type: Schema.ObjectId,
-  //     ref: "User",
-  //     required: false,
-  //   },
-});
+  { timesstamps: true }
+);
 
 const Post = model("Post", postSchema);
 
