@@ -6,8 +6,7 @@ import {
   index,
   update,
   destroy,
-  follow,
-  unfollow,
+  followUnfollow,
 } from "../controllers/user-controller.js";
 import jwtAuthenticator from "../middlewares/jwt-autenticator.js"; // Middleware para autenticação JWT
 import authorizer from "../middlewares/authorizer.js"; // Middleware para autorização por role
@@ -19,8 +18,8 @@ router.post("/signup", signup);
 router.post("/login", login);
 
 router.use(jwtAuthenticator);
-router.post("/follow/:id", follow);
-router.delete("/unfollow/:id", unfollow);
+router.post("/follow:id", followUnfollow);
+router.delete("/Unfollow/:id", followUnfollow);
 router.use(authorizer("ADMINISTRATOR", "SUPORT"));
 router.get("/", index);
 router.post("/", store); // Criar usuário
